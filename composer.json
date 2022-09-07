@@ -1,5 +1,5 @@
 {
-    "name": "selective/xmldsig",
+    "name": "lape/xmldsig",
     "type": "library",
     "description": "Sign XML Documents with Digital Signatures",
     "keywords": [
@@ -8,7 +8,7 @@
         "signatures",
         "verify"
     ],
-    "homepage": "https://github.com/selective-php/xmldsig",
+    "homepage": "https://github.com/lape/xmldsig",
     "license": "MIT",
     "require": {
         "php": "^7.4 || ^8.0",
