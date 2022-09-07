@@ -1,12 +1,12 @@
 <?php
 
-namespace Selective\XmlDSig;
+namespace Lape\XmlDSig;
 
 use DOMDocument;
 use DOMXPath;
 use OpenSSLAsymmetricKey;
-use Selective\XmlDSig\Exception\XmlSignatureValidatorException;
-use Selective\XmlDSig\Exception\XmlSignerException;
+use Lape\XmlDSig\Exception\XmlSignatureValidatorException;
+use Lape\XmlDSig\Exception\XmlSignerException;
 use UnexpectedValueException;
 
 /**

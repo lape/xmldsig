@@ -25,12 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Selective\\XmlDSig\\": "src/"
+            "Lape\\XmlDSig\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Selective\\XmlDSig\\Test\\": "tests/"
+            "Lape\\XmlDSig\\Test\\": "tests/"
         }
     },
     "scripts": {

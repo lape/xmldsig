@@ -1,13 +1,13 @@
 <?php
 
-namespace Selective\XmlDSig;
+namespace Lape\XmlDSig;
 
 use DOMDocument;
 use DOMElement;
 use DOMNodeList;
 use DOMXPath;
 use OpenSSLAsymmetricKey;
-use Selective\XmlDSig\Exception\XmlSignatureValidatorException;
+use Lape\XmlDSig\Exception\XmlSignatureValidatorException;
 
 /**
  * Verify the Digital Signatures of XML Documents.
