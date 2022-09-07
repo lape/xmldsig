@@ -267,12 +267,13 @@ final class XmlSigner
      *
      * @param string $xmlContent The XML content to sign
      * @param string $algorithm For example: sha1, sha224, sha256, sha384, sha512
+     * @param string $node The node to append the signature to
      *
      * @throws XmlSignerException
      *
      * @return string The signed XML content
      */
-    public function signXml(string $xmlContent, string $algorithm): string
+    public function signXml(string $xmlContent, string $algorithm, string $node = null): string
     {
         if (!$this->privateKeyId) {
             throw new XmlSignerException('No private key provided');
@@ -303,7 +304,7 @@ final class XmlSigner
         }
 
         $digestValue = base64_encode($digestValue);
-        $this->appendSignature($xml, $digestValue);
+        $this->appendSignature($xml, $digestValue, $node);
 
         $result = $xml->saveXML();
 
@@ -359,12 +360,13 @@ final class XmlSigner
      *
      * @param DOMDocument $xml The xml document
      * @param string $digestValue The digest value
+     * @param string $node The node to append the signature to
      *
      * @throws UnexpectedValueException
      *
      * @return void The DOM document
      */
-    private function appendSignature(DOMDocument $xml, string $digestValue)
+    private function appendSignature(DOMDocument $xml, string $digestValue, string $node = null)
     {
         $signatureElement = $xml->createElement('Signature');
         $signatureElement->setAttribute('xmlns', 'http://www.w3.org/2000/09/xmldsig#');
@@ -376,7 +378,13 @@ final class XmlSigner
             throw new UnexpectedValueException('Undefined document element');
         }
 
-        $xml->documentElement->appendChild($signatureElement);
+        // If a node is provided, we insert the signature there
+        if ($node) {
+            $node = $xml->getElementsByTagName($node)->item(0);
+            $node->appendChild($signatureElement);
+        } else { // Otherwise, we insert it as root
+            $xml->documentElement->appendChild($signatureElement);
+        }
 
         $signedInfoElement = $xml->createElement('SignedInfo');
         $signatureElement->appendChild($signedInfoElement);
